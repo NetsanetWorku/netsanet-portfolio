@@ -116,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
             aria-label="Go to top of page"
           >
             <img 
-              src="/images/profile-photo.jpg" 
+              src="./images/profile-photo.jpg" 
               alt="Netsanet" 
               className={styles.profilePhoto}
             />

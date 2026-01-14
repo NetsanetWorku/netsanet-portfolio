@@ -49,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           {/* Professional headshot */}
           <div className={styles.imageContainer}>
             <img
-              src="/images/netsa.jpg"
+              src="./images/netsa.jpg"
               alt="Professional headshot of Netsanet, a full-stack developer"
               className={styles.profileImage}
               loading="eager"
