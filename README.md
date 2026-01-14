@@ -27,7 +27,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Vite.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Netsanet/netsanet-portfolio.git
+git clone https://github.com/NetsanetWorku/netsanet-portfolio.git
 cd netsanet-portfolio
 ```
 
@@ -98,7 +98,7 @@ To customize the portfolio with your own information:
 3. **Skills**: Modify `src/data/skills.ts`
 4. **Experience**: Edit `src/data/experience.ts`
 5. **Certifications**: Update `src/data/certifications.ts`
-6. **Gallery**: Modify `src/data/gallery.js`
+6. **Gallery**: Modify `src/data/gallery.ts`
 7. **Images**: Replace images in `public/images/`
 
 ## 📄 License
@@ -107,10 +107,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-**Netsanet**
+**Netsanet Worku**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- GitHub: [@NetsanetWorku](https://github.com/NetsanetWorku)
 
 ## 🤝 Contributing
 
