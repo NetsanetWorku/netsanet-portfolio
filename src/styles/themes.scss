@@ -1,0 +1,139 @@
+// Theme configurations for the portfolio
+
+// Light theme (default)
+:root {
+  --theme-name: 'light';
+}
+
+// Dark theme
+[data-theme='dark'] {
+  --theme-name: 'dark';
+  
+  // Override colors for dark theme
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-400);
+  --color-background: var(--color-gray-900);
+  --color-background-alt: var(--color-gray-800);
+  --color-surface: var(--color-gray-800);
+  --color-surface-elevated: var(--color-gray-700);
+  --color-border: var(--color-gray-700);
+  --color-border-light: var(--color-gray-600);
+  --color-border-dark: var(--color-gray-600);
+  
+  // Adjust shadows for dark theme
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+}
+
+// Blue theme variant
+[data-theme='blue'] {
+  --theme-name: 'blue';
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+}
+
+// Green theme variant
+[data-theme='green'] {
+  --theme-name: 'green';
+  --color-primary-500: #10b981;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+  --color-accent-500: #34d399;
+  --color-accent-600: #10b981;
+}
+
+// Purple theme variant
+[data-theme='purple'] {
+  --theme-name: 'purple';
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-accent-500: #a78bfa;
+  --color-accent-600: #8b5cf6;
+}
+
+// Orange theme variant
+[data-theme='orange'] {
+  --theme-name: 'orange';
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
+  --color-primary-700: #c2410c;
+  --color-accent-500: #fb923c;
+  --color-accent-600: #f97316;
+}
+
+// High contrast theme for accessibility
+[data-theme='high-contrast'] {
+  --theme-name: 'high-contrast';
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-background: #ffffff;
+  --color-primary: #0000ff;
+  --color-accent: #ff0000;
+  --color-border: #000000;
+}
+
+// Reduced motion theme
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-75: 0ms;
+    --duration-100: 0ms;
+    --duration-150: 0ms;
+    --duration-200: 0ms;
+    --duration-300: 0ms;
+    --duration-500: 0ms;
+    --duration-700: 0ms;
+    --duration-1000: 0ms;
+  }
+}
+
+// Theme transition
+* {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: var(--duration-200);
+  transition-timing-function: var(--ease-out);
+}
+
+// Theme utilities
+.theme-transition {
+  transition: all var(--duration-300) var(--ease-out);
+}
+
+// Theme-specific utilities
+.light-only {
+  display: block;
+}
+
+.dark-only {
+  display: none;
+}
+
+[data-theme='dark'] {
+  .light-only {
+    display: none;
+  }
+  
+  .dark-only {
+    display: block;
+  }
+}
+
+// Print theme overrides
+@media print {
+  :root,
+  [data-theme] {
+    --color-text-primary: #000000 !important;
+    --color-text-secondary: #333333 !important;
+    --color-background: #ffffff !important;
+    --color-surface: #ffffff !important;
+    --color-border: #cccccc !important;
+  }
+}

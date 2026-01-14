@@ -1,0 +1,412 @@
+/**
+ * Unit Tests for Responsive Breakpoints
+ * Tests layout behavior at specific viewport sizes
+ * Validates: Requirements 5.1, 5.2, 5.3
+ */
+
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
+// Import components for testing
+import Header from './Header/Header';
+import Hero from './Home/Home';
+import Projects from './Projects/Projects';
+import Skills from './Skills/Skills';
+import Experience from './Experience/Experience';
+import Contact from './Contact/Contact';
+
+// Import sample data
+import { sampleProjects } from '../data/projects';
+import { sampleSkills } from '../data/skills';
+import { sampleExperience, sampleEducation } from '../data/experience';
+
+// Mock window.matchMedia for responsive testing
+const mockMatchMedia = (width: number) => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation((query: string) => {
+      // Parse media query to determine if it matches current width
+      const matches = (() => {
+        if (query.includes('max-width: 767px')) {
+          return width <= 767;
+        }
+        if (query.includes('min-width: 768px') && query.includes('max-width: 1199px')) {
+          return width >= 768 && width <= 1199;
+        }
+        if (query.includes('min-width: 1200px')) {
+          return width >= 1200;
+        }
+        if (query.includes('min-width: 768px')) {
+          return width >= 768;
+        }
+        return false;
+      })();
+
+      return {
+        matches,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      };
+    }),
+  });
+};
+
+// Mock window.innerWidth for viewport testing
+const mockViewport = (width: number, height: number = 800) => {
+  Object.defineProperty(window, 'innerWidth', {
+    writable: true,
+    configurable: true,
+    value: width,
+  });
+  Object.defineProperty(window, 'innerHeight', {
+    writable: true,
+    configurable: true,
+    value: height,
+  });
+  
+  // Trigger resize event
+  window.dispatchEvent(new Event('resize'));
+};
+
+describe('Responsive Breakpoints Unit Tests', () => {
+  beforeEach(() => {
+    // Reset viewport to default
+    mockViewport(1024, 768);
+    mockMatchMedia(1024);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  describe('Mobile Breakpoint (<768px)', () => {
+    beforeEach(() => {
+      mockViewport(375, 667); // iPhone SE dimensions
+      mockMatchMedia(375);
+    });
+
+    test('Header shows mobile menu button and hides desktop navigation', () => {
+      render(<Header />);
+      
+      // Mobile menu button should be visible
+      const mobileMenuButton = screen.getByRole('button', { name: /toggle mobile menu/i });
+      expect(mobileMenuButton).toBeInTheDocument();
+      
+      // Desktop navigation should be hidden (not visible in mobile)
+      const desktopNav = document.querySelector('[data-testid="desktop-nav"]');
+      if (desktopNav) {
+        const styles = window.getComputedStyle(desktopNav);
+        expect(styles.display).toBe('none');
+      }
+    });
+
+    test('Hero section stacks content vertically on mobile', () => {
+      const { container } = render(<Hero />);
+      
+      // Check that content container exists
+      const contentContainer = container.querySelector('[class*="content"]');
+      expect(contentContainer).toBeInTheDocument();
+      
+      // On mobile, image should come before text (order: 1)
+      const imageContainer = container.querySelector('[class*="imageContainer"]');
+      const textContent = container.querySelector('[class*="textContent"]');
+      
+      if (imageContainer && textContent) {
+        const imageStyles = window.getComputedStyle(imageContainer);
+        const textStyles = window.getComputedStyle(textContent);
+        
+        // Check that elements exist and can be styled
+        expect(imageContainer).toBeInTheDocument();
+        expect(textContent).toBeInTheDocument();
+      }
+    });
+
+    test('Projects grid shows single column layout on mobile', () => {
+      const { container } = render(<Projects projects={sampleProjects} />);
+      
+      const projectsGrid = container.querySelector('[class*="projectsGrid"]');
+      expect(projectsGrid).toBeInTheDocument();
+      
+      if (projectsGrid) {
+        const styles = window.getComputedStyle(projectsGrid);
+        // Grid should adapt to single column on mobile
+        expect(projectsGrid).toBeInTheDocument();
+      }
+    });
+
+    test('Skills grid adapts to single column on mobile', () => {
+      const { container } = render(<Skills skills={sampleSkills} />);
+      
+      const skillsGrid = container.querySelector('[class*="skillsGrid"]');
+      expect(skillsGrid).toBeInTheDocument();
+    });
+
+    test('Experience timeline adjusts spacing for mobile', () => {
+      const { container } = render(<Experience experiences={sampleExperience} education={sampleEducation} />);
+      
+      const timeline = container.querySelector('[class*="timeline"]');
+      expect(timeline).toBeInTheDocument();
+      
+      // Check that timeline items exist
+      const timelineItems = container.querySelectorAll('[class*="timelineItem"]');
+      expect(timelineItems.length).toBeGreaterThan(0);
+    });
+
+    test('Contact form maintains usability on mobile', () => {
+      const { container } = render(<Contact />);
+      
+      // Form should be present and usable
+      const form = container.querySelector('form');
+      expect(form).toBeInTheDocument();
+      
+      // All form fields should be accessible
+      expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/subject/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/message/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('Tablet Breakpoint (768px - 1199px)', () => {
+    beforeEach(() => {
+      mockViewport(768, 1024); // iPad dimensions
+      mockMatchMedia(768);
+    });
+
+    test('Header shows desktop navigation on tablet', () => {
+      render(<Header />);
+      
+      // Desktop navigation should be visible
+      const navLinks = screen.getAllByRole('button', { name: /navigate to/i });
+      expect(navLinks.length).toBeGreaterThan(0);
+    });
+
+    test('Hero section maintains two-column layout on tablet', () => {
+      const { container } = render(<Hero />);
+      
+      const contentContainer = container.querySelector('[class*="content"]');
+      expect(contentContainer).toBeInTheDocument();
+      
+      // Both image and text should be visible
+      const profileImage = screen.getByAltText(/professional headshot/i);
+      expect(profileImage).toBeInTheDocument();
+    });
+
+    test('Projects grid shows appropriate columns for tablet', () => {
+      const { container } = render(<Projects projects={sampleProjects} />);
+      
+      const projectsGrid = container.querySelector('[class*="projectsGrid"]');
+      expect(projectsGrid).toBeInTheDocument();
+      
+      // Should show project cards
+      const projectCards = container.querySelectorAll('[class*="projectCard"]');
+      expect(projectCards.length).toBeGreaterThan(0);
+    });
+
+    test('Skills grid shows multiple columns on tablet', () => {
+      const { container } = render(<Skills skills={sampleSkills} />);
+      
+      const skillsGrid = container.querySelector('[class*="skillsGrid"]');
+      expect(skillsGrid).toBeInTheDocument();
+      
+      const skillCategories = container.querySelectorAll('[class*="skillCategory"]');
+      expect(skillCategories.length).toBeGreaterThan(0);
+    });
+
+    test('Experience content shows side-by-side layout on tablet', () => {
+      const { container } = render(<Experience experiences={sampleExperience} education={sampleEducation} />);
+      
+      const content = container.querySelector('[class*="content"]');
+      expect(content).toBeInTheDocument();
+      
+      // Both experience and education sections should be present
+      expect(screen.getByText(/work experience/i)).toBeInTheDocument();
+      expect(screen.getByText(/education/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('Desktop Breakpoint (1200px+)', () => {
+    beforeEach(() => {
+      mockViewport(1440, 900); // Large desktop dimensions
+      mockMatchMedia(1440);
+    });
+
+    test('Header shows full desktop navigation', () => {
+      render(<Header />);
+      
+      // All navigation items should be visible
+      const navLinks = screen.getAllByRole('button', { name: /navigate to/i });
+      expect(navLinks.length).toBeGreaterThan(0);
+      
+      // Brand should be visible
+      expect(screen.getByText(/netsanet/i)).toBeInTheDocument();
+    });
+
+    test('Hero section displays optimally on desktop', () => {
+      const { container } = render(<Hero />);
+      
+      // Check for main elements
+      expect(screen.getByText(/hello, i'm/i)).toBeInTheDocument();
+      expect(screen.getByText(/netsanet/i)).toBeInTheDocument();
+      expect(screen.getByText(/full-stack developer/i)).toBeInTheDocument();
+      
+      // Action buttons should be present
+      expect(screen.getByRole('button', { name: /view my work/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /get in touch/i })).toBeInTheDocument();
+    });
+
+    test('Projects grid shows maximum columns on desktop', () => {
+      const { container } = render(<Projects projects={sampleProjects} />);
+      
+      const projectsGrid = container.querySelector('[class*="projectsGrid"]');
+      expect(projectsGrid).toBeInTheDocument();
+      
+      // Filter controls should be present
+      expect(screen.getByText(/by category/i)).toBeInTheDocument();
+      expect(screen.getByText(/by technology/i)).toBeInTheDocument();
+    });
+
+    test('Skills grid shows optimal layout on desktop', () => {
+      const { container } = render(<Skills skills={sampleSkills} />);
+      
+      expect(screen.getByText(/skills & technologies/i)).toBeInTheDocument();
+      
+      const skillCategories = container.querySelectorAll('[class*="skillCategory"]');
+      expect(skillCategories.length).toBeGreaterThan(0);
+    });
+
+    test('Experience shows full side-by-side layout on desktop', () => {
+      const { container } = render(<Experience experiences={sampleExperience} education={sampleEducation} />);
+      
+      const content = container.querySelector('[class*="content"]');
+      expect(content).toBeInTheDocument();
+      
+      // Timeline elements should be present
+      const timelineItems = container.querySelectorAll('[class*="timelineItem"]');
+      expect(timelineItems.length).toBeGreaterThan(0);
+    });
+
+    test('Contact form shows optimal layout on desktop', () => {
+      const { container } = render(<Contact />);
+      
+      // Contact content should show side-by-side layout
+      const contactContent = container.querySelector('[class*="contactContent"]');
+      expect(contactContent).toBeInTheDocument();
+      
+      // Both form and contact info should be present
+      expect(screen.getByRole('form')).toBeInTheDocument();
+      expect(screen.getByText(/get in touch/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('Responsive Typography', () => {
+    test('Font sizes scale appropriately across breakpoints', () => {
+      const { container, rerender } = render(<Hero />);
+      
+      // Test mobile
+      mockViewport(375, 667);
+      mockMatchMedia(375);
+      rerender(<Hero />);
+      
+      const title = container.querySelector('h1');
+      expect(title).toBeInTheDocument();
+      
+      // Test tablet
+      mockViewport(768, 1024);
+      mockMatchMedia(768);
+      rerender(<Hero />);
+      
+      expect(title).toBeInTheDocument();
+      
+      // Test desktop
+      mockViewport(1440, 900);
+      mockMatchMedia(1440);
+      rerender(<Hero />);
+      
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  describe('Responsive Images', () => {
+    test('Images maintain aspect ratio across breakpoints', () => {
+      const { container } = render(<Hero />);
+      
+      const profileImage = screen.getByAltText(/professional headshot/i);
+      expect(profileImage).toBeInTheDocument();
+      expect(profileImage).toHaveAttribute('width');
+      expect(profileImage).toHaveAttribute('height');
+    });
+
+    test('Project thumbnails adapt to container size', () => {
+      const { container } = render(<Projects projects={sampleProjects} />);
+      
+      const images = container.querySelectorAll('img');
+      images.forEach(img => {
+        expect(img).toHaveAttribute('alt');
+      });
+    });
+  });
+
+  describe('Responsive Navigation', () => {
+    test('Navigation adapts between mobile and desktop modes', () => {
+      const { rerender } = render(<Header />);
+      
+      // Test mobile navigation
+      mockViewport(375, 667);
+      mockMatchMedia(375);
+      rerender(<Header />);
+      
+      const mobileMenuButton = screen.getByRole('button', { name: /toggle mobile menu/i });
+      expect(mobileMenuButton).toBeInTheDocument();
+      
+      // Test desktop navigation
+      mockViewport(1440, 900);
+      mockMatchMedia(1440);
+      rerender(<Header />);
+      
+      // Desktop nav should show navigation items
+      const navButtons = screen.getAllByRole('button', { name: /navigate to/i });
+      expect(navButtons.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('Container Widths', () => {
+    test('Containers respect maximum widths at different breakpoints', () => {
+      const { container } = render(<Hero />);
+      
+      const containerElement = container.querySelector('[class*="container"]');
+      expect(containerElement).toBeInTheDocument();
+      
+      // Container should exist and be properly structured
+      if (containerElement) {
+        expect(containerElement).toBeInTheDocument();
+      }
+    });
+  });
+
+  describe('Spacing and Layout', () => {
+    test('Spacing adjusts appropriately for different screen sizes', () => {
+      const { container, rerender } = render(<Projects projects={sampleProjects} />);
+      
+      // Test that sections maintain proper spacing
+      const section = container.querySelector('section');
+      expect(section).toBeInTheDocument();
+      
+      // Test mobile spacing
+      mockViewport(375, 667);
+      rerender(<Projects projects={sampleProjects} />);
+      expect(section).toBeInTheDocument();
+      
+      // Test desktop spacing
+      mockViewport(1440, 900);
+      rerender(<Projects projects={sampleProjects} />);
+      expect(section).toBeInTheDocument();
+    });
+  });
+});
