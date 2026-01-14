@@ -139,7 +139,7 @@ const Projects: React.FC<ProjectsProps> = ({
           aria-live="polite"
           aria-atomic="false"
         >
-          {filteredProjects.map((project, index) => (
+          {filteredProjects.map((project) => (
             <div key={project.id} role="gridcell">
               <ProjectCard
                 project={project}

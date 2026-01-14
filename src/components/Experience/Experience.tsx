@@ -48,7 +48,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, education, certifi
             </header>
             
             <div className={styles.timeline} role="list" aria-label="Work experience timeline">
-              {experiences.map((exp, index) => (
+              {experiences.map((exp) => (
                 <article key={exp.id} className={styles.timelineItem} role="listitem">
                   <div className={styles.timelineDot} aria-hidden="true" />
                   
@@ -90,7 +90,7 @@ const Experience: React.FC<ExperienceProps> = ({ experiences, education, certifi
             </header>
             
             <div className={styles.timeline} role="list" aria-label="Education timeline">
-              {education.map((edu, index) => (
+              {education.map((edu) => (
                 <article key={edu.id} className={styles.timelineItem} role="listitem">
                   <div className={styles.timelineDot} aria-hidden="true" />
                   
