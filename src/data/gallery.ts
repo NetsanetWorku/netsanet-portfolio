@@ -1,4 +1,11 @@
-export const galleryImages = [
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption: string;
+  uploaded?: boolean;
+}
+
+export const galleryImages: GalleryImage[] = [
   {
     src: '/images/photo_2026-01-13_17-27-43.jpg',
     alt: 'Professional portrait in gray hoodie',
@@ -30,4 +37,3 @@ export const galleryImages = [
     caption: 'Web Developer'
   }
 ];
-

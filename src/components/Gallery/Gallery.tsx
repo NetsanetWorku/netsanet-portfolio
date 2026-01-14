@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { GalleryImage } from '../../data/gallery';
 import styles from './Gallery.module.scss';
 
-const Gallery = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [uploadedImages, setUploadedImages] = useState([]);
+interface GalleryProps {
+  images: GalleryImage[];
+}
 
-  const openModal = (image) => {
+const Gallery = ({ images }: GalleryProps) => {
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [uploadedImages, setUploadedImages] = useState<GalleryImage[]>([]);
+
+  const openModal = (image: GalleryImage) => {
     setSelectedImage(image);
   };
 
@@ -13,23 +18,23 @@ const Gallery = ({ images }) => {
     setSelectedImage(null);
   };
 
-  const handleKeyDown = (e, image) => {
+  const handleKeyDown = (e: React.KeyboardEvent, image: GalleryImage) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       openModal(image);
     }
   };
 
-  const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files);
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files ? Array.from(e.target.files) : [];
     
     files.forEach((file) => {
       if (file.type.startsWith('image/')) {
         const reader = new FileReader();
         
         reader.onload = (event) => {
-          const newImage = {
-            src: event.target.result,
+          const newImage: GalleryImage = {
+            src: event.target?.result as string,
             alt: file.name,
             caption: 'Uploaded by visitor',
             uploaded: true
