@@ -55,9 +55,9 @@ export const personalInfo: PersonalInfo = {
   email: 'workunetsanet143@gmail.com',
   phone: '+251 XXX XXX XXX',
   website: 'https://netsanet.dev',
-  profileImage: '/images/profile-photo.jpg',
-  aboutImage: '/images/about-photo.jpg',
-  resumeUrl: '/documents/netsanet-resume.pdf',
+  profileImage: './images/profile-photo.jpg',
+  aboutImage: './images/about-photo.jpg',
+  resumeUrl: './documents/netsanet-resume.pdf',
   socialLinks: [
     {
       platform: 'TikTok',

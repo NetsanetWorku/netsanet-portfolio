@@ -6,7 +6,7 @@ export const certifications: Certification[] = [
     name: 'How to Take a Course',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 1 How to Take a Course.pdf',
+    certificateUrl: './documents/SS 1 How to Take a Course.pdf',
     description: 'Study Skills Series - Course completion strategies and best practices'
   },
   {
@@ -14,7 +14,7 @@ export const certifications: Certification[] = [
     name: 'Keeping Yourself Safe Online',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 2 Keeping Yourself Safe Online.pdf',
+    certificateUrl: './documents/SS 2 Keeping Yourself Safe Online.pdf',
     description: 'Study Skills Series - Online safety and digital security fundamentals'
   },
   {
@@ -22,7 +22,7 @@ export const certifications: Certification[] = [
     name: 'Academic Integrity',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 3 Academic Integrity.pdf',
+    certificateUrl: './documents/SS 3 Academic Integrity.pdf',
     description: 'Study Skills Series - Ethics and integrity in academic work'
   },
   {
@@ -30,7 +30,7 @@ export const certifications: Certification[] = [
     name: 'Set Goals to Manage Your Time',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 4 Set Goals to Manage Your Time.pdf',
+    certificateUrl: './documents/SS 4 Set Goals to Manage Your Time.pdf',
     description: 'Study Skills Series - Time management and goal-setting strategies'
   },
   {
@@ -38,7 +38,7 @@ export const certifications: Certification[] = [
     name: 'How to Evaluate Resources',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 5 How to Evaluate Resources.pdf',
+    certificateUrl: './documents/SS 5 How to Evaluate Resources.pdf',
     description: 'Study Skills Series - Critical evaluation of information sources'
   },
   {
@@ -46,7 +46,7 @@ export const certifications: Certification[] = [
     name: 'How to Study Effectively',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 6 How to Study Effectively.pdf',
+    certificateUrl: './documents/SS 6 How to Study Effectively.pdf',
     description: 'Study Skills Series - Effective study techniques and learning strategies'
   },
   {
@@ -54,7 +54,7 @@ export const certifications: Certification[] = [
     name: 'Strategies for Successful Online Learning',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/SS 7 Strategies for Successful Online Learning.pdf',
+    certificateUrl: './documents/SS 7 Strategies for Successful Online Learning.pdf',
     description: 'Study Skills Series - Best practices for online education success'
   },
   {
@@ -62,7 +62,7 @@ export const certifications: Certification[] = [
     name: 'AI Essentials',
     issuer: 'e-She',
     issueDate: '2024',
-    certificateUrl: '/documents/AI Essentials.pdf',
+    certificateUrl: './documents/AI Essentials.pdf',
     description: 'Fundamentals of Artificial Intelligence and its applications'
   }
 ];
