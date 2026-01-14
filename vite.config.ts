@@ -14,5 +14,9 @@ export default defineConfig({
         additionalData: `@import "./src/styles/variables.scss";`
       }
     }
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
   }
 })
