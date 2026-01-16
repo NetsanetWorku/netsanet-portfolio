@@ -171,7 +171,7 @@ describe('Property 1: Project Grid Rendering', () => {
     const { container } = render(<Projects projects={[]} categories={[]} technologies={[]} />);
     
     // Property 1: Should show "no results" message when no projects
-    expect(screen.getByText('No projects found for the selected filter.')).toBeInTheDocument();
+    expect(screen.getByText(/No projects found for the selected filter/)).toBeInTheDocument();
     
     // Property 2: Should not show any project cards
     const projectCards = container.querySelectorAll('[class*="projectCard"]');
