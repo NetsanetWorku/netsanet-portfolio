@@ -167,6 +167,8 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
   --container-2xl: 1400px;
+  // Header height for fixed header offset
+  --header-height: 70px;
   
   // Shadows
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -229,5 +231,12 @@
     --color-border: var(--color-gray-700);
     --color-border-light: var(--color-gray-600);
     --color-border-dark: var(--color-gray-600);
+  }
+}
+
+// Responsive header height for smaller screens
+@media (max-width: 767px) {
+  :root {
+    --header-height: 64px;
   }
 }

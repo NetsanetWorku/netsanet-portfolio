@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: var(--header-height);
 
   @media (min-width: var(--breakpoint-md)) {
     padding: 0 var(--spacing-xl);
