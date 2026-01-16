@@ -225,7 +225,7 @@ describe('Header Component', () => {
 
   describe('Keyboard Navigation', () => {
     test('navigation links are focusable with keyboard', async () => {
-      const user = userEvent.setup();
+      userEvent.setup();
       render(<Header />);
       
       const aboutLink = screen.getByRole('button', { name: 'Navigate to About section' });
@@ -236,7 +236,7 @@ describe('Header Component', () => {
     });
 
     test('mobile menu button is focusable with keyboard', async () => {
-      const user = userEvent.setup();
+      userEvent.setup();
       render(<Header />);
       
       const mobileMenuButton = screen.getByRole('button', { name: 'Toggle mobile menu' });

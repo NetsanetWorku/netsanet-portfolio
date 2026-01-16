@@ -1,8 +1,6 @@
 import { render, screen, waitFor, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import * as fc from 'fast-check';
 import Contact from './Contact';
-import { ContactFormData } from '../../types';
 
 // Clean up after each test to prevent DOM pollution
 afterEach(() => {
@@ -37,10 +35,10 @@ describe('Contact Component - Property 4: Form Validation and Submission', () =>
     const { unmount } = render(<Contact />);
     
     try {
-      const nameInput = screen.getByLabelText(/name/i);
-      const emailInput = screen.getByLabelText(/email/i);
-      const subjectInput = screen.getByLabelText(/subject/i);
-      const messageInput = screen.getByLabelText(/message/i);
+      screen.getByLabelText(/name/i);
+      screen.getByLabelText(/email/i);
+      screen.getByLabelText(/subject/i);
+      screen.getByLabelText(/message/i);
       const submitButton = screen.getByRole('button', { name: /send message/i });
       
       // Submit empty form - should show validation errors

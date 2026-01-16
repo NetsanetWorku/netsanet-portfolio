@@ -243,7 +243,7 @@ describe('Hero Component', () => {
     });
 
     test('renders with responsive layout classes', () => {
-      const { container } = render(<Hero />);
+      render(<Hero />);
       
       // Check that main section has responsive classes
       const mainSection = screen.getByRole('main');
