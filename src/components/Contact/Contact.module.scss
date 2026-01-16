@@ -1,5 +1,63 @@
 @import '../../styles/variables.scss';
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: white;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
 
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  // YouTube
+  &[aria-label="YouTube Channel"] {
+    color: white;
+    background: linear-gradient(135deg, #FF0000 0%, #C40000 100%);
+    border-color: #FF0000;
+
+    &:hover {
+      background: linear-gradient(135deg, #FF3333 0%, #E50000 100%);
+      border-color: #FF3333;
+    }
+  }
+
+  // TikTok
+  &[aria-label="TikTok Profile"] {
+    color: white;
+    background: linear-gradient(135deg, #000000 0%, #25F4EE 100%);
+    border-color: #25F4EE;
+
+    &:hover {
+      background: linear-gradient(135deg, #1a1a1a 0%, #35FFF7 100%);
+      border-color: #35FFF7;
+    }
+  }
+
+  // Telegram
+  &[aria-label="Telegram Profile"] {
+    color: white;
+    background: linear-gradient(135deg, #0088cc 0%, #0099ff 100%);
+    border-color: #0088cc;
+
+    &:hover {
+      background: linear-gradient(135deg, #00a1ff 0%, #00b3ff 100%);
+      border-color: #00a1ff;
+    }
+  }
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+}
 .contact {
   min-height: 100vh;
   padding: var(--spacing-3xl) 0;

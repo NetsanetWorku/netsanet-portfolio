@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Component - Code Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid #3B82F6;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-left: 4px solid #3B82F6;
+        }
+
+        .code-block code {
+            color: #e0e0e0;
+        }
+
+        .keyword { color: #3B82F6; }
+        .string { color: #10B981; }
+        .comment { color: #9CA3AF; }
+        .tag { color: #F59E0B; }
+
+        .example-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .navbar-demo {
+            background: linear-gradient(to right, #1f2937, #111827);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .nav-item {
+            display: inline-block;
+            margin-right: 20px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+        }
+
+        .nav-search {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .nav-search input {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-search input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .nav-search button {
+            margin-left: 5px;
+            padding: 8px 16px;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .nav-search button:hover {
+            background: #2563EB;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10B981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .animation-example {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #3B82F6, #1D4ED8, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glow-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3B82F6;
+            animation: glow 2s ease-in-out infinite;
+            margin: 20px 0;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(59, 130, 246, 1);
+            }
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            color: #3B82F6;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #3B82F6;
+            border: 2px solid #3B82F6;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.3rem; }
+            .code-block { font-size: 0.8rem; }
+            .animation-example { font-size: 1.5rem; }
+            .navbar-demo { padding: 10px; }
+            .nav-item { display: block; margin: 5px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Netsanet Portfolio - Complete Code Examples</h1>
+
+        <!-- Navbar Section -->
+        <h2>📱 Navbar Component</h2>
+        <div class="example-section">
+            <h3>Live Demo:</h3>
+            <div class="navbar-demo">
+                <div class="nav-item">Home</div>
+                <div class="nav-item">About</div>
+                <div class="nav-item">Projects</div>
+                <div class="nav-item">Contact</div>
+                <div class="nav-search">
+                    <input type="text" placeholder="Search...">
+                    <button>Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-block">
+<span class="keyword">import</span> Navbar <span class="keyword">from</span> <span class="string">'./components/Navbar'</span>;
+
+<span class="keyword">function</span> <span class="tag">App</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="tag">div</span>&gt;
+      &lt;<span class="tag">Navbar</span> /&gt;
+      <span class="comment">// Rest of your components</span>
+    &lt;/<span class="tag">div</span>&gt;
+  );
+}

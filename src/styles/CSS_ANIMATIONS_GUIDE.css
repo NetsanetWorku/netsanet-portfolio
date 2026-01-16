@@ -1,0 +1,482 @@
+/* ===================================
+   COMPLETE CSS ANIMATIONS GUIDE
+   Netsanet Portfolio
+   =================================== */
+
+/* ========================================
+   BASIC ANIMATIONS
+   ======================================== */
+
+/* Fade In - Smooth opacity transition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide In Left - Slide from left with fade */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide In Right - Slide from right with fade */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide Up - Slide from bottom up */
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   TEXT ANIMATIONS
+   ======================================== */
+
+/* Typewriter Effect - Characters appear one by one */
+@keyframes typewriter {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Blink - Blinking cursor effect */
+@keyframes blink {
+  0%, 49% {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  50%, 100% {
+    border-right-color: transparent;
+  }
+}
+
+/* ========================================
+   MOVEMENT ANIMATIONS
+   ======================================== */
+
+/* Float - Floating motion (used on profile image) */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Wave - Wave motion for text */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Bounce - Bouncing effect */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ========================================
+   GLOW & SHINE ANIMATIONS
+   ======================================== */
+
+/* Glow - Glowing text effect (used on name) */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 1);
+  }
+}
+
+/* Shimmer - Shimmer/shine effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ========================================
+   GRADIENT ANIMATIONS
+   ======================================== */
+
+/* Gradient Shift - Animated gradient background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ========================================
+   OPACITY ANIMATIONS
+   ======================================== */
+
+/* Pulse - Pulsing opacity effect */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.8s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.8s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background-size: 1000px 100%;
+}
+
+.animate-gradientShift {
+  animation: gradientShift 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* ========================================
+   ADVANCED ANIMATIONS
+   ======================================== */
+
+/* Animated Name - Gradient + Glow */
+.animated-name {
+  display: inline-block;
+  background: linear-gradient(45deg, #3B82F6, #1D4ED8, #3B82F6);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.animated-name.glow {
+  animation: glow 2s ease-in-out infinite, gradientShift 3s ease infinite;
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* ========================================
+   TIMING FUNCTIONS
+   ======================================== */
+
+/*
+ * ease - Slow start and end (default)
+ * linear - Constant speed
+ * ease-in - Slow start, fast end
+ * ease-out - Fast start, slow end
+ * ease-in-out - Slow start and end
+ * cubic-bezier(x1, y1, x2, y2) - Custom timing
+ */
+
+.animation-ease {
+  animation: slideIn 1s ease;
+}
+
+.animation-linear {
+  animation: rotate 2s linear infinite;
+}
+
+.animation-ease-in {
+  animation: slideUp 0.8s ease-in;
+}
+
+.animation-ease-out {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animation-ease-in-out {
+  animation: slideIn 1s ease-in-out;
+}
+
+/* ========================================
+   ANIMATION PROPERTIES
+   ======================================== */
+
+/*
+ * animation-name: Name of the animation
+ * animation-duration: How long the animation takes
+ * animation-timing-function: Speed curve
+ * animation-delay: When to start
+ * animation-iteration-count: How many times
+ * animation-direction: normal, reverse, alternate
+ * animation-fill-mode: none, forwards, backwards, both
+ */
+
+.advanced-animation {
+  animation-name: slideIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+/* ========================================
+   SHORTHAND SYNTAX
+   ======================================== */
+
+/*
+ * animation: name duration timing delay iteration-count direction fill-mode;
+ */
+
+.shorthand-animation {
+  animation: slideIn 1s ease-out 0s 1 normal forwards;
+}
+
+/* ========================================
+   USAGE EXAMPLES IN HTML
+   ======================================== */
+
+/*
+HTML Usage:
+============
+
+1. Fade In Effect:
+   <div class="animate-fadeIn">Your content</div>
+
+2. Slide In Effect:
+   <div class="animate-slideIn">Your content</div>
+
+3. Float Animation:
+   <img class="animate-float" src="image.jpg" />
+
+4. Animated Name:
+   <h1 class="animated-name glow">Netsanet Worku</h1>
+
+5. Wave Text:
+   <p class="animate-wave">Hello!</p>
+
+6. Pulsing Element:
+   <button class="animate-pulse">Click me</button>
+
+7. Multiple Animations:
+   <div class="animate-fadeIn animate-slideUp">Content</div>
+*/
+
+/* ========================================
+   RESPONSIVE ANIMATIONS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-wave {
+    animation: wave 1s ease-in-out infinite;
+  }
+
+  .animated-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATION
+   ======================================== */
+
+/* Use transform and opacity for better performance */
+.performant-animation {
+  animation: slideIn 0.6s ease-out;
+  /* Use transform instead of left/right */
+  will-change: transform;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   COMPLEX ANIMATIONS
+   ======================================== */
+
+/* Staggered Animation - Items animate one after another */
+.staggered-item {
+  animation: slideUp 0.6s ease-out;
+}
+
+.staggered-item:nth-child(1) { animation-delay: 0s; }
+.staggered-item:nth-child(2) { animation-delay: 0.1s; }
+.staggered-item:nth-child(3) { animation-delay: 0.2s; }
+.staggered-item:nth-child(4) { animation-delay: 0.3s; }
+
+/* Sequential Animation - Multiple animations in sequence */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sequential-animation {
+  animation: fadeInSlideUp 1s ease-out;
+}
+
+/* Hover Animation */
+.hover-animate {
+  transition: all 0.3s ease;
+}
+
+.hover-animate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   BROWSER COMPATIBILITY
+   ======================================== */
+
+/*
+Vendor Prefixes (for older browsers):
+- -webkit- (Chrome, Safari, newer Opera versions)
+- -moz- (Firefox)
+- -ms- (Internet Explorer)
+- -o- (Opera)
+
+Example:
+.animated {
+  -webkit-animation: slideIn 1s ease-out;
+  -moz-animation: slideIn 1s ease-out;
+  animation: slideIn 1s ease-out;
+}
+*/
+
+/* ========================================
+   COMBINING WITH TRANSITIONS
+   ======================================== */
+
+.transition-example {
+  transition: all 0.3s ease;
+}
+
+.transition-example:hover {
+  color: #3B82F6;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   NOTES FOR DEVELOPERS
+   ======================================== */
+
+/*
+1. Performance Tips:
+   - Use transform and opacity for animations
+   - Avoid animating width/height
+   - Use GPU acceleration with will-change
+   - Reduce animation complexity on mobile
+
+2. Accessibility:
+   - Respect prefers-reduced-motion
+   - Don't rely solely on animations for UX
+   - Ensure animated content is readable
+
+3. Best Practices:
+   - Keep animations under 300ms for UI feedback
+   - Use easing functions for natural motion
+   - Test on different devices
+   - Combine animations for better effect
+
+4. Animation Duration Guidelines:
+   - UI Feedback: 150-300ms
+   - Entrance: 300-600ms
+   - Page Transition: 600-800ms
+   - Background Animation: 1000ms+
+*/
