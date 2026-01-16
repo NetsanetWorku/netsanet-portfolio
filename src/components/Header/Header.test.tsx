@@ -30,7 +30,7 @@ describe('Header Component', () => {
   describe('Navigation Links Rendering', () => {
     test('renders brand name', () => {
       render(<Header />);
-      expect(screen.getByText('Netsanet')).toBeInTheDocument();
+      expect(screen.getByText('NetsanetTech-Portfolio')).toBeInTheDocument();
     });
 
     test('renders all navigation links in desktop nav', () => {
